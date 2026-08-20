@@ -68,6 +68,14 @@ function isWithinSchedule() {
         return true
     }
 
+    function getScheduleState() {
+    if (schedule.enabled !== true) {
+        return 'always-on'
+    }
+
+    return isWithinSchedule() ? 'awake' : 'sleeping'
+}
+
     const wake = timeToMinutes(schedule.wakeTime || '06:00')
     const sleep = timeToMinutes(schedule.sleepTime || '23:00')
 
