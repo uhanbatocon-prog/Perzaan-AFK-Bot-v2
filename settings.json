@@ -1,6 +1,6 @@
 {
   "server": {
-    "host": "46.224.7.62",
+    "host": "dynamic-6.magmanode.com",
     "port": 25900,
     "version": "auto"
   },
