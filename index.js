@@ -52,6 +52,17 @@ function timeToMinutes(time) {
     return hours * 60 + minutes
 }
 
+function getVietnamTime() {
+    const now = new Date()
+
+    return new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Ho_Chi_Minh',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    }).format(now)
+}
+
 function isWithinSchedule() {
     if (schedule.enabled !== true) {
         return true
@@ -65,29 +76,20 @@ function isWithinSchedule() {
         return true
     }
 
-    const now = new Date()
+    const vietnamTime = getVietnamTime()
 
-    const current =
-        now.getHours() * 60 +
-        now.getMinutes()
+    const [hours, minutes] = vietnamTime
+        .split(':')
+        .map(Number)
 
-    // Normal schedule: e.g. 06:00 -> 23:00
+    const current = hours * 60 + minutes
+
     if (wake < sleep) {
         return current >= wake && current < sleep
     }
 
-    // Overnight schedule: e.g. 23:00 -> 06:00
     return current >= wake || current < sleep
 }
-
-function getScheduleState() {
-    if (schedule.enabled !== true) {
-        return 'always-on'
-    }
-
-    return isWithinSchedule() ? 'awake' : 'sleeping'
-}
-
 // --------------------------------------------------
 // RECONNECT
 // --------------------------------------------------
