@@ -1,1 +1,30 @@
+{
+  "server": {
+    "host": "phetbomb.aternos.me",
+    "port": 58729,
+    "version": "auto"
+  },
 
+  "bot": {
+    "username": "AFK_Bot",
+    "reconnectDelay": 10000,
+    "antiAfkInterval": 900000
+  },
+
+  "schedule": {
+    "enabled": true,
+    "wakeTime": "06:00",
+    "sleepTime": "23:00"
+  },
+
+  "discord": {
+    "enabled": false,
+    "token": "",
+    "prefix": "!"
+  },
+
+  "web": {
+    "enabled": true,
+    "port": 3000
+  }
+}
